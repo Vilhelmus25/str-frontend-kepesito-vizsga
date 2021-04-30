@@ -7,17 +7,15 @@ function changeOuterLinks() {
         }
     });
 
-    document.querySelectorAll('nav').forEach((element) => {
-        element.style.display = 'flex';
-        element.style.flexDirection = 'column';
-        element.style.margin = '0px auto';
-        element.style.width = '30%';
-        element.style.border = '1px solid blue';
-        element.style.padding = '16px';
-    });
+    const nav = document.querySelector('nav');
+
+    nav.style.display = 'flex';
+    nav.style.flexDirection = 'column';
+    nav.style.margin = '0px auto';
+    nav.style.width = '30%';
+    nav.style.border = '1px solid blue';
+    nav.style.padding = '16px';
 
 }
-
-changeOuterLinks();
 
 export { changeOuterLinks };
