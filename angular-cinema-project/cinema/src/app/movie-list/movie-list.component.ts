@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Movie } from '../model/movie';
+import { HttpService } from '../service/http.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -8,15 +10,23 @@ import { Movie } from '../model/movie';
 })
 export class MovieListComponent implements OnInit {
 
-  movies: Movie[] = [];
+  movies: Observable<Movie[]>;
 
-  constructor() { }
+  constructor(private httpService: HttpService) {
+
+  }
 
   ngOnInit(): void {
   }
 
-  getMovies(): void {}
+  getMovies(): void {
+    this.movies = this.httpService.getMovieList();
+  }
 
-  deleteMovie(id: number): any {}
+  deleteMovie(id: number): any {
+    this.movies = this.httpService.deleteMovie(id).subscribe(() => {
+      this.getMovies();
+    });
+  }
 
 }
